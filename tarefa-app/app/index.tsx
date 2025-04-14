@@ -1,9 +1,21 @@
-import { Text, View, StyleSheet } from "react-native";
+import { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import AddTask from "./TaskInput";
+import TaskList from "./TaskList";
 
-export default function Home() {
+export default function HomeScreen() {
+  const [tasks, setTasks] = useState<string[]>([]);
+
+  const handleAddTask = (task: string) => {
+    if (task.trim().length > 0) {
+      setTasks([...tasks, task]);
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tarefas</Text>
+      <AddTask onAddTask={handleAddTask} />
+      <TaskList tasks={tasks} />
     </View>
   );
 }
@@ -11,13 +23,8 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightblue',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    paddingTop: 60,
+    paddingHorizontal: 16,
+    backgroundColor: "lightblue",
   },
 });
-
