@@ -13,17 +13,31 @@ export default function HomeScreen() {
     const newTask: Task = {
       id: Date.now().toString(),
       text: text.trim(),
+      completed: false
     };
 
     setTasks((prev) => [...prev, newTask]);
-  }
+  };
+
+  const handleDeleteTask = (taskId: string) => {
+    setTasks((prev) => prev.filter((task) => task.id !== taskId))
+  };
+
+  const handleCompleteTask = (taskId: string) => {
+    setTasks((prev)=>
+      prev.map((task) =>
+        task.id === taskId ? {...task, completed: true} : task
+      )
+    )
+    console.log("Tarefas atualizadas:", tasks);
+  };
 
   return (
     <View style={styles.container}>
       <TaskInput onAddTask={handleAddTask} />
       <TaskList tasks={tasks} 
-      onComplete={(task)=>{console.log("concluida: ", task)}}
-      onDelete={(task)=>{console.log("excluída: ", task)}}/>
+      onComplete={handleCompleteTask}
+      onDelete={handleDeleteTask}/>
     </View>
   );
 }
@@ -32,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 16,
-    paddingHorizontal: 100,
+    paddingHorizontal: 16,
     backgroundColor: "lightblue",
   },
 });

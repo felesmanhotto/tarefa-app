@@ -16,15 +16,19 @@ export default function TaskList({
       keyExtractor={(item, index) => index.toString()}
       renderItem={({ item }) => (
         <View style={styles.taskItem}>
-          <Text style={styles.taskText}>{item.text}</Text>
+          <Text style={[styles.taskText,
+            item.completed && styles.completedTaskText,
+          ]
+          }>{item.text}
+          </Text>
 
           <View style={styles.buttonGroup}>
-            <Pressable
+            {!item.completed && <Pressable
               style={[styles.button, styles.completeButton]}
               onPress={()=>onComplete(item.id)}>
 
               <Text style={styles.buttonText}>Concluir</Text>
-            </Pressable>
+            </Pressable>}
 
             <Pressable
               style={[styles.button, styles.deleteButton]}
@@ -73,5 +77,9 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontWeight: "bold",
+  },
+  completedTaskText: {
+    textDecorationLine: "line-through",
+    color: "#888",
   },
 });
