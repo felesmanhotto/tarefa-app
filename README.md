@@ -1,1 +1,1 @@
-Simple tasks app made on react native
+Simple tasks app made on react native and expo.
