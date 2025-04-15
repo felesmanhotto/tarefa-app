@@ -18,7 +18,7 @@ export default function TaskList({
         <View style={styles.taskItem}>
           <Text style={styles.taskText}>{item.text}</Text>
 
-          <View>
+          <View style={styles.buttonGroup}>
             <Pressable
               style={[styles.button, styles.completeButton]}
               onPress={()=>onComplete(item.id)}>
@@ -41,31 +41,34 @@ export default function TaskList({
 
 const styles = StyleSheet.create({
   taskItem: {
+    flexDirection: "row", 
+    alignItems: "center", 
+    justifyContent: "space-between", 
     padding: 12,
     marginHorizontal: 16,
     marginBottom: 10,
-    backgroundColor: "#e0e0e0",
+    backgroundColor: "white",
     borderRadius: 5,
   },
   taskText: {
     fontSize: 16,
-    marginBottom: 8,
+    flex: 1,
   },
-  buttonContainer: {
+  buttonGroup: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    gap: 8, 
   },
   button: {
+    paddingHorizontal: 10,
     paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 4,
-    marginRight: 8,
+    borderRadius: 5,
   },
   completeButton: {
-    backgroundColor: "#4CAF50",
+    backgroundColor: "#4caf50", // verde
+    marginRight: 8,
   },
   deleteButton: {
-    backgroundColor: "#F44336",
+    backgroundColor: "#f44336", // vermelho
   },
   buttonText: {
     color: "#fff",
