@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native";
+import { View, TextInput, Pressable , StyleSheet, Text } from "react-native";
 
 export default function TaskInput({ onAddTask }: { onAddTask: (task: string) => void }) {
   const [text, setText] = useState("");
@@ -19,7 +19,9 @@ export default function TaskInput({ onAddTask }: { onAddTask: (task: string) => 
         value={text}
         onChangeText={setText}
       />
-      <Button title="Adicionar" onPress={handleAddTask} />
+      <Pressable style={styles.addButton} onPress={handleAddTask}>
+        <Text style={styles.addButtonText}>Adicionar</Text>
+      </Pressable>
     </View>
   );
 }
@@ -39,4 +41,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#fff",
   },
+  addButton: {
+    backgroundColor: "#0D00FF",
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 5,
+    justifyContent: "center",
+  },
+  addButtonText: {
+    color: "white",
+    fontWeight: "bold",
+  },
 });
+
